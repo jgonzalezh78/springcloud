@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: eurekaserver
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+  server:    wait-time-in-ms-when-sync-empty: 5
+    enable-self-preservation: false
+  instance:    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2    virtual-host-name: localhost
+    

@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: microservicio-cuenta  cloud:    config:      uri: "http://configurationservice:9990"
+      enabled: true    loadbalancer:      ribbon:        enabled: false
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true

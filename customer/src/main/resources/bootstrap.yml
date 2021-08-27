@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: microservicio-cliente  cloud:    config:      uri: "http://configurationservice:9990"
+      enabled: true
+eureka:  instance:    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true

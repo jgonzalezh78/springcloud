@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: zuulserver
+
+eureka:  instance:    prefer-ip-address: true
+  client:    register-with-eureka: true
+    fetch-registry: true
+    service-url:      defaultZone: http://eurekaservice:9991/eureka
+
+zuul:  prefix: /api
+  routes:    -customers:
+      service-id: microservicio-cliente
+      path: /cliente/**
+    -accounts:
+      service-id: microservicio-cuenta
+      path: /cuenta/**

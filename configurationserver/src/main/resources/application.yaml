@@ -1,0 +1,10 @@
+server:
+  port: 9990
+spring:
+  application:
+    name: configurationserver
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/jgonzalezh78/service-config

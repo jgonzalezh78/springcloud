@@ -1,0 +1,76 @@
+version: "3.9"
+services:
+#========== Configuration Service ==========#
+  configurationservice:
+    image: gft/configurationservice:latest
+    ports:
+       - "9990:9990"
+    environment:
+      ENCRYPT_KEY: "IMSYMMETRIC"
+    networks: 
+       - springcloud
+#    command: java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
+#      -Xss256K -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+#========== Eureka Service ==========#
+  eurekaservice:
+    image: gft/eurekaservice:latest
+    ports:
+       - "9991:9991"
+    environment:
+      ENCRYPT_KEY: "IMSYMMETRIC"
+    networks: 
+       - springcloud
+    depends_on:
+      - configurationservice
+#    entrypoint: /usr/local/wait-for configserver:9990
+#    command: java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
+#      -Xss256K -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+#========== Zuul Service ==========#
+  zuulservice:
+    image: gft/zuulservice:latest
+    ports:
+       - "9992:9992"
+    environment:
+      ENCRYPT_KEY: "IMSYMMETRIC"
+    networks: 
+       - springcloud
+    depends_on:
+      - configurationservice
+      - eurekaservice
+#    command: java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
+#      -Xss256K -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+      #========== Account Service ==========#
+  customerservice:
+    image: gft/customerservice:latest
+#    ports:
+#       - "8080:8080"
+    environment:
+      ENCRYPT_KEY: "IMSYMMETRIC"
+    networks: 
+       - springcloud
+    depends_on:
+      - configurationservice
+      - eurekaservice
+      - zuulservice
+#    command: java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
+#      -Xss256K -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+      #========== Account Service ==========#
+  accountservice:
+    image: gft/accountservice:latest
+#    ports:
+#       - "8080:8080"
+    environment:
+      ENCRYPT_KEY: "IMSYMMETRIC"
+    networks: 
+       - springcloud
+    depends_on:
+      - configurationservice
+      - eurekaservice
+      - zuulservice
+      - customerservice
+#    command: java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
+#      -Xss256K -Djava.security.egd=file:/dev/./urandom -jar /app.jar
+
+#========== Config Docker Network ==========#
+networks:
+  springcloud:
