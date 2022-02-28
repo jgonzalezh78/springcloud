@@ -5,7 +5,7 @@ spring:
 eureka:  instance:    prefer-ip-address: true
   client:    register-with-eureka: true
     fetch-registry: true
-    service-url:      defaultZone: http://eurekaservice:9991/eureka
+    service-url:      defaultZone: http://localhost:9991/eureka
 
 zuul:  prefix: /api
   routes:    -customers:

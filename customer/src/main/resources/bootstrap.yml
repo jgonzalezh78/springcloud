@@ -1,6 +1,6 @@
 spring:
   application:
-    name: microservicio-cliente  cloud:    config:      uri: "http://configurationservice:9990"
+    name: microservicio-cliente  cloud:    config:      uri: "http://localhost:9990"
       enabled: true
 eureka:  instance:    prefer-ip-address: true
   client:

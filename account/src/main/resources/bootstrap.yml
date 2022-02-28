@@ -1,6 +1,6 @@
 spring:
   application:
-    name: microservicio-cuenta  cloud:    config:      uri: "http://configurationservice:9990"
+    name: microservicio-cuenta  cloud:    config:      uri: "http://localhost:9990"
       enabled: true    loadbalancer:      ribbon:        enabled: false
 eureka:
   instance:

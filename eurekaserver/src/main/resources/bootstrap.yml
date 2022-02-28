@@ -1,7 +1,7 @@
-spring:
+ spring:
   application:
     name: eurekaserver
-eureka:
+ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
